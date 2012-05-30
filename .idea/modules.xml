@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/tulsa-experimental.iml" filepath="$PROJECT_DIR$/tulsa-experimental.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tulsa-experimental-grailsPlugins.iml" filepath="$PROJECT_DIR$/tulsa-experimental-grailsPlugins.iml" />
     </modules>
   </component>
 </project>
