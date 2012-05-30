@@ -11,6 +11,8 @@
           <root url="file://$USER_HOME$/.grails/2.0.4/projects/tulsa-experimental/plugins/twitter-bootstrap-2.0.2.25/web-app" relative="/" />
           <root url="file://$USER_HOME$/.grails/2.0.4/projects/tulsa-experimental/plugins/twitter-bootstrap-2.0.2.25/grails-app/views" relative="/" />
           <root url="file://$USER_HOME$/.grails/2.0.4/projects/tulsa-experimental/plugins/jquery-1.7.1/web-app" relative="/" />
+          <root url="file://$USER_HOME$/.grails/2.0.4/projects/tulsa-experimental/plugins/fields-1.2/grails-app/views" relative="/" />
+          <root url="file://$USER_HOME$/.grails/2.0.4/projects/tulsa-experimental/plugins/rest-0.7/web-app" relative="/" />
         </webroots>
         <sourceRoots />
       </configuration>
@@ -38,11 +40,26 @@
       <sourceFolder url="file://$USER_HOME$/.grails/2.0.4/projects/tulsa-experimental/plugins/activiti-spring-security-0.4.6/src/groovy" isTestSource="false" />
       <sourceFolder url="file://$USER_HOME$/.grails/2.0.4/projects/tulsa-experimental/plugins/activiti-spring-security-0.4.6/grails-app/i18n" isTestSource="false" />
     </content>
+    <content url="file://$USER_HOME$/.grails/2.0.4/projects/tulsa-experimental/plugins/fields-1.2">
+      <sourceFolder url="file://$USER_HOME$/.grails/2.0.4/projects/tulsa-experimental/plugins/fields-1.2/src/groovy" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME$/.grails/2.0.4/projects/tulsa-experimental/plugins/fields-1.2/grails-app/services" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME$/.grails/2.0.4/projects/tulsa-experimental/plugins/fields-1.2/grails-app/taglib" isTestSource="false" />
+    </content>
+    <content url="file://$USER_HOME$/.grails/2.0.4/projects/tulsa-experimental/plugins/hibernate-2.0.4" />
     <content url="file://$USER_HOME$/.grails/2.0.4/projects/tulsa-experimental/plugins/jquery-1.7.1">
       <sourceFolder url="file://$USER_HOME$/.grails/2.0.4/projects/tulsa-experimental/plugins/jquery-1.7.1/src/groovy" isTestSource="false" />
       <sourceFolder url="file://$USER_HOME$/.grails/2.0.4/projects/tulsa-experimental/plugins/jquery-1.7.1/grails-app/i18n" isTestSource="false" />
       <sourceFolder url="file://$USER_HOME$/.grails/2.0.4/projects/tulsa-experimental/plugins/jquery-1.7.1/grails-app/services" isTestSource="false" />
       <sourceFolder url="file://$USER_HOME$/.grails/2.0.4/projects/tulsa-experimental/plugins/jquery-1.7.1/grails-app/taglib" isTestSource="false" />
+    </content>
+    <content url="file://$USER_HOME$/.grails/2.0.4/projects/tulsa-experimental/plugins/resources-1.1.6">
+      <sourceFolder url="file://$USER_HOME$/.grails/2.0.4/projects/tulsa-experimental/plugins/resources-1.1.6/src/java" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME$/.grails/2.0.4/projects/tulsa-experimental/plugins/resources-1.1.6/src/groovy" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME$/.grails/2.0.4/projects/tulsa-experimental/plugins/resources-1.1.6/grails-app/i18n" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME$/.grails/2.0.4/projects/tulsa-experimental/plugins/resources-1.1.6/grails-app/taglib" isTestSource="false" />
+    </content>
+    <content url="file://$USER_HOME$/.grails/2.0.4/projects/tulsa-experimental/plugins/rest-0.7">
+      <sourceFolder url="file://$USER_HOME$/.grails/2.0.4/projects/tulsa-experimental/plugins/rest-0.7/src/groovy" isTestSource="false" />
     </content>
     <content url="file://$USER_HOME$/.grails/2.0.4/projects/tulsa-experimental/plugins/spring-security-core-1.2.7.3">
       <sourceFolder url="file://$USER_HOME$/.grails/2.0.4/projects/tulsa-experimental/plugins/spring-security-core-1.2.7.3/src/java" isTestSource="false" />
@@ -51,12 +68,21 @@
       <sourceFolder url="file://$USER_HOME$/.grails/2.0.4/projects/tulsa-experimental/plugins/spring-security-core-1.2.7.3/grails-app/services" isTestSource="false" />
       <sourceFolder url="file://$USER_HOME$/.grails/2.0.4/projects/tulsa-experimental/plugins/spring-security-core-1.2.7.3/grails-app/taglib" isTestSource="false" />
     </content>
+    <content url="file://$USER_HOME$/.grails/2.0.4/projects/tulsa-experimental/plugins/svn-1.0.2">
+      <sourceFolder url="file://$USER_HOME$/.grails/2.0.4/projects/tulsa-experimental/plugins/svn-1.0.2/src/groovy" isTestSource="false" />
+    </content>
+    <content url="file://$USER_HOME$/.grails/2.0.4/projects/tulsa-experimental/plugins/tomcat-2.0.4" />
     <content url="file://$USER_HOME$/.grails/2.0.4/projects/tulsa-experimental/plugins/twitter-bootstrap-2.0.2.25">
       <sourceFolder url="file://$USER_HOME$/.grails/2.0.4/projects/tulsa-experimental/plugins/twitter-bootstrap-2.0.2.25/grails-app/i18n" isTestSource="false" />
       <sourceFolder url="file://$USER_HOME$/.grails/2.0.4/projects/tulsa-experimental/plugins/twitter-bootstrap-2.0.2.25/grails-app/taglib" isTestSource="false" />
     </content>
+    <content url="file://$USER_HOME$/.grails/2.0.4/projects/tulsa-experimental/plugins/webxml-1.4.1">
+      <sourceFolder url="file://$USER_HOME$/.grails/2.0.4/projects/tulsa-experimental/plugins/webxml-1.4.1/src/groovy" isTestSource="false" />
+    </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" scope="PROVIDED" name="grails-2.0.4" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="groovy-1.8.6" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="grails-2.0.4" level="application" />
     <orderEntry type="module-library" exported="">
       <library name="Grails User Library (tulsa-experimental-grailsPlugins)">
@@ -64,6 +90,17 @@
           <root url="file://$USER_HOME$/.grails/2.0.4/projects/tulsa-experimental/plugins/activiti-5.8.2/lib" />
           <root url="jar://$USER_HOME$/.grails/ivy-cache/org.springframework.security/spring-security-core/jars/spring-security-core-3.0.7.RELEASE.jar!/" />
           <root url="jar://$USER_HOME$/.grails/ivy-cache/org.springframework.security/spring-security-web/jars/spring-security-web-3.0.7.RELEASE.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.jodd/jodd/jars/jodd-3.3.1.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/asm/asm/jars/asm-3.2.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.jodd/jodd-wot/jars/jodd-wot-3.3.1.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/xml-resolver/xml-resolver/jars/xml-resolver-1.2.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/xerces/xercesImpl/jars/xercesImpl-2.8.1.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/net.sourceforge.nekohtml/nekohtml/jars/nekohtml-1.9.9.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/net.sf.ezmorph/ezmorph/jars/ezmorph-1.0.6.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/net.sf.json-lib/json-lib/jars/json-lib-2.3-jdk15.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.apache.httpcomponents/httpcore/jars/httpcore-4.0.1.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.apache.httpcomponents/httpclient/jars/httpclient-4.0.3.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.codehaus.groovy.modules.http-builder/http-builder/jars/http-builder-0.5.1.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

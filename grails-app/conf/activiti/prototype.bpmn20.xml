@@ -1,0 +1,48 @@
+<definitions xmlns='http://www.omg.org/spec/BPMN/20100524/MODEL'
+             xmlns:activiti='http://activiti.org/bpmn'
+             xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+             exporter='Signavio Process Editor, http://www.signavio.com'
+             exporterVersion=''
+             expressionLanguage='http://www.w3.org/1999/XPath' id='sid-c211b87b-791f-46f8-bdde-e2b36ce76b81'
+             targetNamespace='http://www.signavio.com/bpmn20'
+             typeLanguage='http://www.w3.org/2001/XMLSchema'
+             xsi:schemaLocation='http://www.omg.org/spec/BPMN/20100524/MODEL http://www.omg.org/spec/BPMN/2.0/20100501/BPMN20.xsd'>
+
+    <process id="fitofarma" name="first try with fitofarma process">
+
+        <startEvent id="start" />
+
+        <sequenceFlow id='flow0' sourceRef='start' targetRef='addResources'/>
+
+        <userTask id="addAcceptance" name="Add new acceptance">
+            <documentation>
+                Add all necessary resources to the culture medium
+            </documentation>
+            <potentialOwner>
+                <resourceAssignmentExpression>
+                    <formalExpression>group(ROLE_OPERATOR)</formalExpression>
+                </resourceAssignmentExpression>
+            </potentialOwner>
+        </userTask>
+
+        <sequenceFlow id='flow1' sourceRef='addResources' targetRef='sterilization'/>
+
+        <userTask id="sterilization" name="Sterilization">
+            <documentation>
+                Sterilization of the culture medium
+            </documentation>
+            <potentialOwner>
+                <resourceAssignmentExpression>
+                    <formalExpression>group(ROLE_OPERATOR)</formalExpression>
+                </resourceAssignmentExpression>
+            </potentialOwner>
+        </userTask>
+
+        <sequenceFlow id='flow2' sourceRef='sterilization' targetRef='physicalQualityCheck'/>
+
+        <endEvent id='end'/>
+
+    </process>
+
+
+</definitions>

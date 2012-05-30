@@ -1,0 +1,27 @@
+.jsTree-root-icon {
+    margin-left: 1px; margin-top: 3px;
+}
+
+.jsTree-parent {
+    width: 358px;
+    border: thin solid #EEEEEE; border-radius: 4px 4px 4px 4px;
+    overflow: auto;
+    padding: 5px;
+}
+
+#jsTree {
+    display: inline-block; width: 98%; height: 500px;
+}
+
+/*Twitter Bootstrap Enhancements*/
+
+.btn-maxi {
+    border-radius: 5px;
+    padding: 10px 26px;
+    font-size: 18px;
+    line-height: normal;
+}
+
+legend {
+    margin-bottom: 0px;
+}
