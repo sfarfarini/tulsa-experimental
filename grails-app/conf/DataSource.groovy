@@ -14,29 +14,33 @@ environments {
     development {
         dataSource {
             dbCreate = "create-drop" // one of 'create', 'create-drop', 'update', 'validate', ''
-            url = "jdbc:h2:mem:devDb;MVCC=TRUE;LOCK_TIMEOUT=10000"
+            url = "jdbc:h2:mem:devDb;MVCC=TRUE"
         }
     }
     test {
         dataSource {
             dbCreate = "update"
-            url = "jdbc:h2:mem:testDb;MVCC=TRUE;LOCK_TIMEOUT=10000"
+            url = "jdbc:h2:mem:testDb;MVCC=TRUE"
         }
     }
     production {
         dataSource {
+            driverClassName = "com.mysql.jdbc.Driver"
+            dialect = "org.hibernate.dialect.MySQL5InnoDBDialect"
             dbCreate = "update"
-            url = "jdbc:h2:prodDb;MVCC=TRUE;LOCK_TIMEOUT=10000"
+            url = "jdbc:mysql://localhost:3306/tulsa?autoReconnect=true"
+            username = "tulsa"
+            password = ""
             pooled = true
             properties {
-               maxActive = -1
-               minEvictableIdleTimeMillis=1800000
-               timeBetweenEvictionRunsMillis=1800000
-               numTestsPerEvictionRun=3
-               testOnBorrow=true
-               testWhileIdle=true
-               testOnReturn=true
-               validationQuery="SELECT 1"
+                maxActive = 50
+                maxIdle = 25
+                minIdle = 5
+                initialSize = 5
+                minEvictableIdleTimeMillis = 60000
+                timeBetweenEvictionRunsMillis = 60000
+                maxWait = 10000
+                validationQuery = "SELECT 1"
             }
         }
     }

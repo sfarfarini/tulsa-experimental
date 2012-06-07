@@ -1,29 +1,21 @@
-import com.chelab.tulsa.auth.Role
-import com.chelab.tulsa.auth.SecurityService
-import com.chelab.tulsa.auth.User
-import org.activiti.engine.ProcessEngine
-import org.activiti.engine.RepositoryService
+import com.chelab.tulsa.auth.*
+import security.SecurityService
 
 class BootStrap {
 
-    RepositoryService repositoryService
-    ProcessEngine processEngine
     SecurityService securityService
 
     def init = { servletContext ->
 
-        def ctx = servletContext.getAttribute(org.codehaus.groovy.grails.web.servlet.GrailsApplicationAttributes.APPLICATION_CONTEXT);
-
-        createRole('ROLE_ATS')
-        createRole('ROLE_USER')
-        createRole('ROLE_MANAGER')
-        createUser('ats', 'ats', ['ROLE_ATS'])
-        createUser('technician', 'technician', ['ROLE_USER'])
-        createUser('manager', 'manager', ['ROLE_MANAGER'])
+        addSomeUsersAndRoles()
     }
 
-    def destroy = {
-        processEngine.close()
+    private void addSomeUsersAndRoles() {
+        createRole('ROLE_OPERATOR')
+        createRole('ROLE_ADMIN')
+        createUser('ats', 'ats', ['ROLE_OPERATOR', 'ROLE_ADMIN'])
+        createUser('operator', 'operator', ['ROLE_OPERATOR', 'ROLE_ADMIN'])
+        createUser('manager', 'manager', ['ROLE_ADMIN'])
     }
 
     private createRole(String authority) {
@@ -41,4 +33,9 @@ class BootStrap {
             }
         }
     }
+
+    def destroy = {
+
+    }
+
 }

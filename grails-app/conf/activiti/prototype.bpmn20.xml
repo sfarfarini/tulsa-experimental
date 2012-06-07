@@ -1,20 +1,19 @@
-<definitions xmlns='http://www.omg.org/spec/BPMN/20100524/MODEL'
-             xmlns:activiti='http://activiti.org/bpmn'
-             xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
-             exporter='Signavio Process Editor, http://www.signavio.com'
-             exporterVersion=''
-             expressionLanguage='http://www.w3.org/1999/XPath' id='sid-c211b87b-791f-46f8-bdde-e2b36ce76b81'
-             targetNamespace='http://www.signavio.com/bpmn20'
-             typeLanguage='http://www.w3.org/2001/XMLSchema'
-             xsi:schemaLocation='http://www.omg.org/spec/BPMN/20100524/MODEL http://www.omg.org/spec/BPMN/2.0/20100501/BPMN20.xsd'>
+<definitions
+        xmlns='http://www.omg.org/spec/BPMN/20100524/MODEL'
+        xmlns:activiti='http://activiti.org/bpmn'
+        xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+        exporter='Signavio Process Editor, http://www.signavio.com'
+        exporterVersion=''
+        expressionLanguage='http://www.w3.org/1999/XPath' id='sid-c211b87b-791f-46f8-bdde-e2b36ce76b81'
+        targetNamespace='http://www.signavio.com/bpmn20'
+        typeLanguage='http://www.w3.org/2001/XMLSchema'
+        xsi:schemaLocation='http://www.omg.org/spec/BPMN/20100524/MODEL http://www.omg.org/spec/BPMN/2.0/20100501/BPMN20.xsd'>
 
-    <process id="fitofarma" name="first try with fitofarma process">
-
-        <startEvent id="start" />
-
+    <process id='microbiology' name='First shot of microbiology prototype process'>
+        <startEvent id='start'/>
         <sequenceFlow id='flow0' sourceRef='start' targetRef='addResources'/>
 
-        <userTask id="addAcceptance" name="Add new acceptance">
+        <userTask id="addResources" name="Add Resources">
             <documentation>
                 Add all necessary resources to the culture medium
             </documentation>
@@ -24,7 +23,6 @@
                 </resourceAssignmentExpression>
             </potentialOwner>
         </userTask>
-
         <sequenceFlow id='flow1' sourceRef='addResources' targetRef='sterilization'/>
 
         <userTask id="sterilization" name="Sterilization">
@@ -37,12 +35,140 @@
                 </resourceAssignmentExpression>
             </potentialOwner>
         </userTask>
-
         <sequenceFlow id='flow2' sourceRef='sterilization' targetRef='physicalQualityCheck'/>
 
+        <userTask id="physicalQualityCheck" name="Quality Check">
+            <documentation>
+                Quality check of the culture medium
+            </documentation>
+            <potentialOwner>
+                <resourceAssignmentExpression>
+                    <formalExpression>group(ROLE_OPERATOR)</formalExpression>
+                </resourceAssignmentExpression>
+            </potentialOwner>
+        </userTask>
+        <sequenceFlow id="flow3" sourceRef="physicalQualityCheck" targetRef="qualityCheckDecision"/>
+
+        <exclusiveGateway id="qualityCheckDecision" name="Quality Check Decision"/>
+        <sequenceFlow id='flow3a' sourceRef='qualityCheckDecision' targetRef='createTestDishes'>
+            <conditionExpression xsi:type='tFormalExpression'>
+                ${ cultureMediumService.isQualityCheckSuccessful(id)}
+            </conditionExpression>
+        </sequenceFlow>
+        <sequenceFlow id='flow3b' sourceRef='qualityCheckDecision' targetRef='end'>
+            <conditionExpression xsi:type='tFormalExpression'>
+                ${ !cultureMediumService.isQualityCheckSuccessful(id)}
+            </conditionExpression>
+        </sequenceFlow>
+
+        <userTask id="createTestDishes" name="Create Test Dishes">
+            <documentation>
+                Create Dished To Test Quality Of Culture Medium
+            </documentation>
+            <potentialOwner>
+                <resourceAssignmentExpression>
+                    <formalExpression>group(ROLE_OPERATOR)</formalExpression>
+                </resourceAssignmentExpression>
+            </potentialOwner>
+        </userTask>
+        <sequenceFlow id='flow4' sourceRef='createTestDishes' targetRef='testDishProcess'/>
+        <subProcess id="testDishProcess" name="Test Dish Process">
+            <multiInstanceLoopCharacteristics activiti:collection="${cultureMediumService.getUnfinishedTestDishIds(id)}"
+                                              activiti:elementVariable="testDishId"/>
+
+            <startEvent id="incubatorStart"/>
+            <sequenceFlow sourceRef="incubatorStart" targetRef="writeExecutionId"/>
+
+            <serviceTask id="writeExecutionId"
+                         activiti:expression="${cultureMediumService.writeExecutionId(testDishId, execution)}"/>
+
+            <sequenceFlow sourceRef="writeExecutionId" targetRef="intoIncubator"/>
+
+            <userTask id="intoIncubator" name="Put Into Incubator">
+                <documentation>
+                    Put Test Dish Into The Incubator
+                </documentation>
+                <potentialOwner>
+                    <resourceAssignmentExpression>
+                        <formalExpression>group(ROLE_OPERATOR)</formalExpression>
+                    </resourceAssignmentExpression>
+                </potentialOwner>
+            </userTask>
+            <sequenceFlow sourceRef="intoIncubator" targetRef="outOfIncubator"/>
+
+            <userTask id="outOfIncubator" name="Take Out Of Incubator">
+                <documentation>
+                    Take Test Dish Out Of The Incubator
+                </documentation>
+                <potentialOwner>
+                    <resourceAssignmentExpression>
+                        <formalExpression>group(ROLE_OPERATOR)</formalExpression>
+                    </resourceAssignmentExpression>
+                </potentialOwner>
+            </userTask>
+            <sequenceFlow sourceRef="outOfIncubator" targetRef="testDishQualityCheck"/>
+
+            <userTask id="testDishQualityCheck" name="Quality Check Of Test Dish">
+                <documentation>
+                    Quality Check Of Test Dish
+                </documentation>
+                <potentialOwner>
+                    <resourceAssignmentExpression>
+                        <formalExpression>group(ROLE_OPERATOR)</formalExpression>
+                    </resourceAssignmentExpression>
+                </potentialOwner>
+            </userTask>
+            <sequenceFlow sourceRef="testDishQualityCheck" targetRef="incubatorEnd"/>
+            <!--<sequenceFlow id="flow5" sourceRef="testDishQualityCheck" targetRef="incubatorEnd"/>-->
+
+            <!--<exclusiveGateway id="testDishQualityCheckDecision" name="Test Dish Quality Check Decision"/>-->
+            <!--<sequenceFlow id='flow5a' sourceRef='testDishQualityCheckDecision' targetRef='createTestDishes'>-->
+                <!--<conditionExpression xsi:type='tFormalExpression'>-->
+                    <!--${ cultureMediumService.isQualityCheckSuccessful(id)}-->
+                <!--</conditionExpression>-->
+            <!--</sequenceFlow>-->
+            <!--<sequenceFlow id='flow5b' sourceRef='testDishQualityCheckDecision' targetRef='end'>-->
+                <!--<conditionExpression xsi:type='tFormalExpression'>-->
+                    <!--${ !cultureMediumService.isQualityCheckSuccessful(id)}-->
+                <!--</conditionExpression>-->
+            <!--</sequenceFlow>-->
+
+            <endEvent id="incubatorEnd"/>
+        </subProcess>
+        <sequenceFlow id="flow5" sourceRef="testDishProcess" targetRef="testsFinishedDecision"/>
+
+        <userTask id="testsFinishedDecision" name="decide if tests are finished">
+            <documentation>
+                Decide if tests are finished
+            </documentation>
+            <potentialOwner>
+                <resourceAssignmentExpression>
+                    <formalExpression>group(ROLE_OPERATOR)</formalExpression>
+                </resourceAssignmentExpression>
+            </potentialOwner>
+        </userTask>
+        <sequenceFlow sourceRef="testsFinishedDecision" targetRef="biologicalQualityCheck">
+            <conditionExpression xsi:type='tFormalExpression'>
+                ${ finishTests}
+            </conditionExpression>
+        </sequenceFlow>
+        <sequenceFlow sourceRef="testsFinishedDecision" targetRef="createTestDishes">
+            <conditionExpression xsi:type='tFormalExpression'>
+                ${ !finishTests}
+            </conditionExpression>
+        </sequenceFlow>
+
+        <userTask id="biologicalQualityCheck" name="Biological Quality Check">
+            <documentation>
+                Biological Quality Check
+            </documentation>
+            <potentialOwner>
+                <resourceAssignmentExpression>
+                    <formalExpression>group(ROLE_OPERATOR)</formalExpression>
+                </resourceAssignmentExpression>
+            </potentialOwner>
+        </userTask>
+        <sequenceFlow sourceRef="biologicalQualityCheck" targetRef="end"/>
         <endEvent id='end'/>
-
     </process>
-
-
 </definitions>
