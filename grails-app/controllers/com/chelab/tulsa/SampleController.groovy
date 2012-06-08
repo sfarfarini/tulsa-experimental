@@ -1,10 +1,31 @@
 package com.chelab.tulsa
 
-import org.springframework.dao.DataIntegrityViolationException
+import grails.validation.ValidationException
+import org.activiti.engine.ActivitiException
 
 class SampleController {
 
+    PesticideProcessService processService
+
     static scaffold = Sample
+
+    def save = {
+
+        Sample sample = new Sample(params)
+
+        try {
+            processService.start(sample)
+        } catch (ValidationException ignored) {
+            render(view: 'create', model: [sample: sample])
+            return
+        } catch (ActivitiException ignored) {
+            flash.message = 'could not start new process. Try again'
+            render(view: 'create', model: [sample: sample])
+            return
+        }
+        flash.message = "started new process for $sample"
+        redirect(action: 'show', id: sample.id)
+    }
 
 /*    def index() {
         redirect(action: "list", params: params)

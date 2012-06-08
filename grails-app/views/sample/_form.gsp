@@ -19,14 +19,6 @@
               value="${sampleInstance?.family?.id}" class="many-to-one"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: sampleInstance, field: 'processInstanceId', 'error')} ">
-    <label for="processInstanceId">
-        <g:message code="sample.processInstanceId.label" default="Process Instance Id"/>
-
-    </label>
-    <g:textField name="processInstanceId" value="${sampleInstance?.processInstanceId}"/>
-</div>
-
 <div class="fieldcontain ${hasErrors(bean: sampleInstance, field: 'sampleId', 'error')} ">
     <label for="sampleId">
         <g:message code="sample.sampleId.label" default="Sample Id"/>
