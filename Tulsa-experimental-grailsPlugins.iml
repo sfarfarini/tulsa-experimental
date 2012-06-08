@@ -66,9 +66,9 @@
     <orderEntry type="module-library" exported="">
       <library name="Grails User Library (Tulsa-experimental-grailsPlugins)">
         <CLASSES>
+          <root url="file://$USER_HOME$/.grails/2.0.4/projects/tulsa-experimental/plugins/activiti-5.8.2/lib" />
           <root url="jar://$USER_HOME$/.grails/ivy-cache/org.springframework.security/spring-security-core/jars/spring-security-core-3.0.7.RELEASE.jar!/" />
           <root url="jar://$USER_HOME$/.grails/ivy-cache/org.springframework.security/spring-security-web/jars/spring-security-web-3.0.7.RELEASE.jar!/" />
-          <root url="file://$USER_HOME$/.grails/2.0.4/projects/tulsa-experimental/plugins/activiti-5.8.2/lib" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

@@ -1,4 +1,37 @@
-<%--
+<!doctype html>
+<html>
+<head>
+    <meta name="layout" content="main"/>
+    <title><g:message code="index.title"/></title>
+</head>
+
+<body>
+<div class="body" role="main">
+    <br>
+
+    <g:if test="${flash.message}">
+        <div class="message" role="status">${flash.message}</div>
+    </g:if>
+    <g:form controller="kitchenProcess" action="startTaskByBatchNumber">
+        <span class="fieldcontain">
+            <label for="batchNumber">
+                <g:message code="cultureMedium.batchNumber.label"/>
+            </label>
+            <g:textField name="batchNumber"/>
+        </span>
+        <g:submitButton name="${message(code: ' ', default: 'Load')}"/>
+    </g:form>
+
+
+</div>
+</body>
+</html>
+
+
+
+
+
+%{--<%--
 /* Copyright 2010 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -183,4 +216,4 @@
 
         </div>
     </body>
-</html>
+</html>--}%

@@ -1,4 +1,4 @@
-package security
+package com.chelab.tulsa.security
 
 import grails.plugins.springsecurity.SpringSecurityService
 import org.activiti.engine.IdentityService

@@ -1,13 +1,20 @@
 import com.chelab.tulsa.auth.*
-import security.SecurityService
+import com.chelab.tulsa.security.SecurityService
+import org.activiti.engine.RepositoryService
 
 class BootStrap {
 
     SecurityService securityService
+    RepositoryService repositoryService
 
     def init = { servletContext ->
 
+        assertTulsaProcessDeployed()
         addSomeUsersAndRoles()
+    }
+
+    private assertTulsaProcessDeployed() {
+        assert repositoryService.createProcessDefinitionQuery().processDefinitionKey('pesticide').count() > 0
     }
 
     private void addSomeUsersAndRoles() {

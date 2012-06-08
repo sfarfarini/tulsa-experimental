@@ -1,4 +1,4 @@
-package security
+package tulsa.experimental
 
 
 
@@ -8,8 +8,8 @@ import org.junit.*
 /**
  * See the API for {@link grails.test.mixin.services.ServiceUnitTestMixin} for usage instructions
  */
-@TestFor(SecurityService)
-class SecurityServiceTests {
+@TestFor(PesticideProcessService)
+class PesticideProcessServiceTests {
 
     void testSomething() {
         fail "Implement me"
