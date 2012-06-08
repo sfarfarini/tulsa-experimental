@@ -12,12 +12,12 @@
     <g:if test="${flash.message}">
         <div class="message" role="status">${flash.message}</div>
     </g:if>
-    <g:form controller="kitchenProcess" action="startTaskByBatchNumber">
+    <g:form controller="pesticideProcess" action="startTaskBySampleId">
         <span class="fieldcontain">
-            <label for="batchNumber">
-                <g:message code="cultureMedium.batchNumber.label"/>
+            <label for="sampleId">
+                <g:message code="sample.sampleId.label"/>
             </label>
-            <g:textField name="batchNumber"/>
+            <g:textField name="sampleId"/>
         </span>
         <g:submitButton name="${message(code: ' ', default: 'Load')}"/>
     </g:form>

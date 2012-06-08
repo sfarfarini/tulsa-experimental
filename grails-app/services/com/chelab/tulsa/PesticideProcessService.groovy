@@ -38,4 +38,26 @@ class PesticideProcessService {
     Task getTask(def taskId) {
         taskService.createTaskQuery().taskId(taskId).singleResult()
     }
+
+    List<Task> getTasks(Sample sample) {
+        taskService.createTaskQuery().processInstanceId(sample.processInstanceId).list()
+    }
+
+    Sample getSample(String taskId) {
+        Task task = getTask(taskId)
+        if (!task) {
+            return null
+        }
+        Sample.findByProcessInstanceId(task.processInstanceId)
+    }
+
+    Boolean isPossible(Task task) {
+        String username = securityService.username
+        if (taskService.createTaskQuery().taskId(task.id).taskAssignee(username).count() > 0 ||
+                taskService.createTaskQuery().taskId(task.id).taskCandidateUser(username).count() > 0
+        ) {
+            return true
+        }
+        false
+    }
 }
