@@ -2,16 +2,16 @@ package com.chelab.tulsa
 
 import org.activiti.engine.task.Task
 
-class PesticideProcessController {
+class PreparativeProcessController {
 
-    PesticideProcessService pesticideProcessService
+    PreparativeProcessService preparativeProcessService
 
-/*    def complete = {
-        Task task = pesticideProcessService.getTask(params.taskId)
-        Sample sample = pesticideProcessService.getSample(params.taskId)
+    def complete = {
+        Task task = preparativeProcessService.getTask(params.taskId)
+        Sample sample = preparativeProcessService.getSample(params.taskId)
 
         [sample: sample, task: task]
-    }*/
+    }
 
     def startTaskBySampleId = {
 
@@ -25,10 +25,10 @@ class PesticideProcessController {
 
         List<Task> tasks = []
 
-        tasks.addAll(pesticideProcessService.getTasks(sample))
+        tasks.addAll(preparativeProcessService.getTasks(sample))
 
         Map<Task, Boolean> taskMap = tasks.collectEntries {
-            [(it): pesticideProcessService.isPossible(it)]
+            [(it): preparativeProcessService.isPossible(it)]
         }
 
         if (taskMap.size() == 1 && (taskMap.values() as List).first()) {

@@ -6,14 +6,17 @@ import com.chelab.tulsa.security.SecurityService
 import org.activiti.engine.RuntimeService
 import org.activiti.engine.task.Task
 import org.activiti.engine.TaskService
+import org.activiti.engine.history.HistoricTaskInstance
+import org.activiti.engine.HistoryService
 
-class PesticideProcessService {
+class PreparativeProcessService {
 
     static transactional = true
 
     SecurityService securityService
     RuntimeService runtimeService
     TaskService taskService
+    HistoryService historyService
 
     ProcessInstance start(Sample sample) {
 
@@ -21,8 +24,9 @@ class PesticideProcessService {
         if (!user) {
             throw new IllegalStateException('no logged in user!')
         }
-        ProcessInstance processInstance = runtimeService.startProcessInstanceById(
-                'pesticide', sample.sampleId, [controller: 'pesticideProcess', action: 'complete']
+
+        ProcessInstance processInstance = runtimeService.startProcessInstanceByKey(
+                'preparative', sample.sampleId, [controller: 'preparativeProcess', action: 'complete']
         )
         sample.processInstanceId = processInstance.id
         sample.save(failOnError: true)
@@ -59,5 +63,13 @@ class PesticideProcessService {
             return true
         }
         false
+    }
+
+    boolean isActive(Sample sample) {
+        runtimeService.createProcessInstanceQuery().processInstanceId(sample.processInstanceId).count() > 0
+    }
+
+    List<HistoricTaskInstance> getHistoricTasks(String processInstanceId) {
+        historyService.createHistoricTaskInstanceQuery().processInstanceId(processInstanceId).orderByHistoricActivityInstanceStartTime().desc().list()
     }
 }

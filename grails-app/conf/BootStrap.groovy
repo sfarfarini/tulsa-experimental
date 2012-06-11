@@ -20,7 +20,8 @@ class BootStrap {
     }
 
     private assertTulsaProcessDeployed() {
-        assert repositoryService.createProcessDefinitionQuery().processDefinitionKey('pesticide').count() > 0
+        assert repositoryService.createProcessDefinitionQuery().processDefinitionKey('preparative').count() > 0
+        assert repositoryService.createProcessDefinitionQuery().processDefinitionKey('analysis').count() > 0
     }
 
     private void addSomeSamples() {

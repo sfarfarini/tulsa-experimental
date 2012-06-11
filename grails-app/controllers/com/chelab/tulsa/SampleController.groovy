@@ -5,7 +5,7 @@ import org.activiti.engine.ActivitiException
 
 class SampleController {
 
-    PesticideProcessService processService
+    PreparativeProcessService preparativeProcessService
 
     static scaffold = Sample
 
@@ -14,7 +14,7 @@ class SampleController {
         Sample sample = new Sample(params)
 
         try {
-            processService.start(sample)
+            preparativeProcessService.start(sample)
         } catch (ValidationException ignored) {
             render(view: 'create', model: [sample: sample])
             return

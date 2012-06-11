@@ -9,7 +9,7 @@
         typeLanguage='http://www.w3.org/2001/XMLSchema'
         xsi:schemaLocation='http://www.omg.org/spec/BPMN/20100524/MODEL http://www.omg.org/spec/BPMN/2.0/20100501/BPMN20.xsd'>
 
-    <process id='pesticide' name='Pesticide prototype'>
+    <process id='preparative' name='Pesticide prototype for preparative'>
 
         <startEvent id='start'/>
 
@@ -39,9 +39,9 @@
             </potentialOwner>
         </userTask>
 
-        <sequenceFlow id='flow2' sourceRef='weighing' targetRef='preparative'/>
+        <sequenceFlow id='flow2' sourceRef='weighing' targetRef='extraction'/>
 
-        <userTask id="preparative" name="Preparative">
+        <userTask id="extraction" name="Extraction manual process">
             <documentation>
                 Follow the diluition process
             </documentation>
@@ -52,46 +52,7 @@
             </potentialOwner>
         </userTask>
 
-        <sequenceFlow id="flow3" sourceRef="preparative" targetRef="loading"/>
-
-        <userTask id="loading" name="Instrumental Loading">
-            <documentation>
-                Organization of samples to load into the instrument
-            </documentation>
-            <potentialOwner>
-                <resourceAssignmentExpression>
-                    <formalExpression>group(ROLE_OPERATOR)</formalExpression>
-                </resourceAssignmentExpression>
-            </potentialOwner>
-        </userTask>
-
-        <sequenceFlow id='flow4' sourceRef='loading' targetRef='quantification'/>
-
-        <userTask id="quantification" name="Quantification">
-            <documentation>
-                Quantification of samples
-            </documentation>
-            <potentialOwner>
-                <resourceAssignmentExpression>
-                    <formalExpression>group(ROLE_OPERATOR)</formalExpression>
-                </resourceAssignmentExpression>
-            </potentialOwner>
-        </userTask>
-
-        <sequenceFlow id='flow5' sourceRef="quantification" targetRef="results" />
-
-        <userTask id="results" name="Results">
-            <documentation>
-                Analyse results
-            </documentation>
-            <potentialOwner>
-                <resourceAssignmentExpression>
-                    <formalExpression>group(ROLE_OPERATOR)</formalExpression>
-                </resourceAssignmentExpression>
-            </potentialOwner>
-        </userTask>
-
-        <sequenceFlow id='flow6' sourceRef="results" targetRef="end"/>
+        <sequenceFlow id="flow3" sourceRef="extraction" targetRef="end"/>
 
         <endEvent id='end'/>
     </process>

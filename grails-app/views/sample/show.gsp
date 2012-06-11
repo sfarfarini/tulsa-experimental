@@ -83,6 +83,9 @@
         </g:if>
 
     </ol>
+
+    <g:render template="historicTasks" model="${[tasks: sampleInstance.historicTasks]}"/>
+
     <g:form>
         <fieldset class="buttons">
             <g:hiddenField name="id" value="${sampleInstance?.id}"/>

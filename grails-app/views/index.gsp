@@ -12,7 +12,7 @@
     <g:if test="${flash.message}">
         <div class="message" role="status">${flash.message}</div>
     </g:if>
-    <g:form controller="pesticideProcess" action="startTaskBySampleId">
+    <g:form controller="preparativeProcess" action="startTaskBySampleId">
         <span class="fieldcontain">
             <label for="sampleId">
                 <g:message code="sample.sampleId.label"/>
