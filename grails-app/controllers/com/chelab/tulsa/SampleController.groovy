@@ -27,6 +27,24 @@ class SampleController {
         redirect(action: 'show', id: sample.id)
     }
 
+    def showSearch () {
+        [barcodeNew: params.barcodeNew]
+    }
+
+    def search (String barcode) {
+
+        def sample = Sample.findBySampleId(barcode)
+
+        if (!sample) {
+            flash.message = "Missing barcode"
+            redirect(action: 'showSearch', params: [barcodeNew: barcode])
+        } else {
+            redirect(action: 'show', id: sample.id)
+        }
+
+        //redirect(action: 'showSearch')
+    }
+
 /*    def index() {
         redirect(action: "list", params: params)
     }*/
@@ -36,9 +54,9 @@ class SampleController {
         [sampleInstanceList: Sample.list(params), sampleInstanceTotal: Sample.count()]
     }*/
 
-    /*def create() {
+    def create() {
         [sampleInstance: new Sample(params)]
-    }*/
+    }
 
     /*def save() {
         def sampleInstance = new Sample(params)

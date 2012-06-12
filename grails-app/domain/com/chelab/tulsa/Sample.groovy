@@ -17,7 +17,8 @@ class Sample {
     static transients = ['active', 'historicTasks']
 
     static constraints = {
-
+        description(nullable: false)
+        sampleId(nullable: false)
     }
 
     boolean isActive() {

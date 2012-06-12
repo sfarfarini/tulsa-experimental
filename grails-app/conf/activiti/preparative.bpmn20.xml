@@ -13,20 +13,22 @@
 
         <startEvent id='start'/>
 
-        <sequenceFlow id='flow0' sourceRef='start' targetRef='acceptance'/>
 
-        <userTask id="acceptance" name="Acceptance">
-            <documentation>
-                Navigate all new acceptance
-            </documentation>
-            <potentialOwner>
-                <resourceAssignmentExpression>
-                    <formalExpression>group(ROLE_OPERATOR)</formalExpression>
-                </resourceAssignmentExpression>
-            </potentialOwner>
-        </userTask>
+        <!--<userTask id="acceptance" name="Acceptance">-->
+        <!--<documentation>-->
+        <!--Navigate all new acceptance-->
+        <!--</documentation>-->
+        <!--<potentialOwner>-->
+        <!--<resourceAssignmentExpression>-->
+        <!--<formalExpression>group(ROLE_OPERATOR)</formalExpression>-->
+        <!--</resourceAssignmentExpression>-->
+        <!--</potentialOwner>-->
+        <!--</userTask>-->
 
-        <sequenceFlow id='flow1' sourceRef='acceptance' targetRef='weighing'/>
+        <sequenceFlow id='flow0' sourceRef='start' targetRef='weighing'/>
+
+        <!--<sequenceFlow id='flow1' sourceRef='acceptance' targetRef='weighing'/>-->
+
 
         <userTask id="weighing" name="Weighing procedure">
             <documentation>

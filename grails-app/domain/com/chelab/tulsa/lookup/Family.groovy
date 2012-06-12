@@ -9,6 +9,10 @@ class Family {
     String description
     FamilyType familyType
 
+    public String toString() {
+        description
+    }
+
     static constraints = {
         description(nullable: true, blank: true)
         familyType(nullable: true, blank: true)

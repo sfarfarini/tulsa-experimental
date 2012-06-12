@@ -24,14 +24,8 @@
         <g:message code="sample.sampleId.label" default="Sample Id"/>
 
     </label>
-    <g:textField name="sampleId" value="${sampleInstance?.sampleId}"/>
+    <input type="text" value="${sampleInstance?.sampleId}" disabled="disabled"/>
+    <g:hiddenField name="sampleId" value="${sampleInstance?.sampleId}"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: sampleInstance, field: 'startDate', 'error')} required">
-    <label for="startDate">
-        <g:message code="sample.startDate.label" default="Start Date"/>
-        <span class="required-indicator">*</span>
-    </label>
-    <g:datePicker name="startDate" precision="day" value="${sampleInstance?.startDate}"/>
-</div>
 

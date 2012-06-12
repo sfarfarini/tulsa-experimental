@@ -20,6 +20,8 @@ class PreparativeProcessService {
 
     ProcessInstance start(Sample sample) {
 
+        sample.startDate = new Date()
+
         User user = securityService.loggedInUser
         if (!user) {
             throw new IllegalStateException('no logged in user!')
@@ -28,10 +30,14 @@ class PreparativeProcessService {
         ProcessInstance processInstance = runtimeService.startProcessInstanceByKey(
                 'preparative', sample.sampleId, [controller: 'preparativeProcess', action: 'complete']
         )
+
+
+
         sample.processInstanceId = processInstance.id
         sample.save(failOnError: true)
         setDomainInstance(processInstance.id, sample)
-        return processInstance
+
+        processInstance
     }
 
     private setDomainInstance(String processInstanceId, def domainInstance) {
