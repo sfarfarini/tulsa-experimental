@@ -28,7 +28,7 @@ class PreparativeProcessService {
         }
 
         ProcessInstance processInstance = runtimeService.startProcessInstanceByKey(
-                'preparative', sample.sampleId, [controller: 'preparativeProcess', action: 'complete']
+                'preparative', sample.sampleId, [controller: 'preparativeProcess']
         )
 
 
