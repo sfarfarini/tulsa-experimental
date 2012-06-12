@@ -3,11 +3,12 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
+    <meta name="layout" content="bootstrap"/>
   <title></title>
 </head>
 <body>
 
-
+    <h1 class="page-header">Search Sample</h1>
 
     <g:form action="search">
         <g:textField name="barcode" value=""/>
